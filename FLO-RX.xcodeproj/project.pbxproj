@@ -16,6 +16,9 @@
 		027580B02BA5532100E7031B /* FLO_RXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580AF2BA5532100E7031B /* FLO_RXTests.swift */; };
 		027580BA2BA5532100E7031B /* FLO_RXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580B92BA5532100E7031B /* FLO_RXUITests.swift */; };
 		027580BC2BA5532100E7031B /* FLO_RXUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580BB2BA5532100E7031B /* FLO_RXUITestsLaunchTests.swift */; };
+		25A5C0FA7CD305F9C3A3CCB6 /* Pods_FLO_RX_FLO_RXUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39674BE3E9F23DB5136D332B /* Pods_FLO_RX_FLO_RXUITests.framework */; };
+		7B0B15DE10BD7162386E4C93 /* Pods_FLO_RX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 804D3104584D4CDE40A45EA3 /* Pods_FLO_RX.framework */; };
+		C217AE143C58C98E52B0B1F3 /* Pods_FLO_RXTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB64EE0C4ECC096908E71A0 /* Pods_FLO_RXTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,15 @@
 		027580B52BA5532100E7031B /* FLO-RXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FLO-RXUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		027580B92BA5532100E7031B /* FLO_RXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLO_RXUITests.swift; sourceTree = "<group>"; };
 		027580BB2BA5532100E7031B /* FLO_RXUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLO_RXUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		39674BE3E9F23DB5136D332B /* Pods_FLO_RX_FLO_RXUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FLO_RX_FLO_RXUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		417BEBFD74EAC0CCB932CA07 /* Pods-FLO-RX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLO-RX.release.xcconfig"; path = "Target Support Files/Pods-FLO-RX/Pods-FLO-RX.release.xcconfig"; sourceTree = "<group>"; };
+		4788AC1C7112EF08178362C2 /* Pods-FLO-RX-FLO-RXUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLO-RX-FLO-RXUITests.release.xcconfig"; path = "Target Support Files/Pods-FLO-RX-FLO-RXUITests/Pods-FLO-RX-FLO-RXUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4EB64EE0C4ECC096908E71A0 /* Pods_FLO_RXTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FLO_RXTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B9FDABA0A3E70A3CD13E052 /* Pods-FLO-RXTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLO-RXTests.release.xcconfig"; path = "Target Support Files/Pods-FLO-RXTests/Pods-FLO-RXTests.release.xcconfig"; sourceTree = "<group>"; };
+		804D3104584D4CDE40A45EA3 /* Pods_FLO_RX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FLO_RX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1B2025F3186316F85159D20 /* Pods-FLO-RX-FLO-RXUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLO-RX-FLO-RXUITests.debug.xcconfig"; path = "Target Support Files/Pods-FLO-RX-FLO-RXUITests/Pods-FLO-RX-FLO-RXUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D555703BDAC11F81AFEF148D /* Pods-FLO-RXTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLO-RXTests.debug.xcconfig"; path = "Target Support Files/Pods-FLO-RXTests/Pods-FLO-RXTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DE41BF7D6BD1683650835582 /* Pods-FLO-RX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FLO-RX.debug.xcconfig"; path = "Target Support Files/Pods-FLO-RX/Pods-FLO-RX.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B0B15DE10BD7162386E4C93 /* Pods_FLO_RX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C217AE143C58C98E52B0B1F3 /* Pods_FLO_RXTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A5C0FA7CD305F9C3A3CCB6 /* Pods_FLO_RX_FLO_RXUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +98,8 @@
 				027580AE2BA5532100E7031B /* FLO-RXTests */,
 				027580B82BA5532100E7031B /* FLO-RXUITests */,
 				027580932BA5532000E7031B /* Products */,
+				FB0D23C8596FDA8B5F3AC36E /* Pods */,
+				527825614845D2AAE613BA5D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +144,30 @@
 			path = "FLO-RXUITests";
 			sourceTree = "<group>";
 		};
+		527825614845D2AAE613BA5D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				804D3104584D4CDE40A45EA3 /* Pods_FLO_RX.framework */,
+				39674BE3E9F23DB5136D332B /* Pods_FLO_RX_FLO_RXUITests.framework */,
+				4EB64EE0C4ECC096908E71A0 /* Pods_FLO_RXTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB0D23C8596FDA8B5F3AC36E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DE41BF7D6BD1683650835582 /* Pods-FLO-RX.debug.xcconfig */,
+				417BEBFD74EAC0CCB932CA07 /* Pods-FLO-RX.release.xcconfig */,
+				D1B2025F3186316F85159D20 /* Pods-FLO-RX-FLO-RXUITests.debug.xcconfig */,
+				4788AC1C7112EF08178362C2 /* Pods-FLO-RX-FLO-RXUITests.release.xcconfig */,
+				D555703BDAC11F81AFEF148D /* Pods-FLO-RXTests.debug.xcconfig */,
+				7B9FDABA0A3E70A3CD13E052 /* Pods-FLO-RXTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 027580BF2BA5532100E7031B /* Build configuration list for PBXNativeTarget "FLO-RX" */;
 			buildPhases = (
+				8ABC8ACA9716ED7C6E10E517 /* [CP] Check Pods Manifest.lock */,
 				0275808E2BA5532000E7031B /* Sources */,
 				0275808F2BA5532000E7031B /* Frameworks */,
 				027580902BA5532000E7031B /* Resources */,
+				50D512AC46D34B4672F95970 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -151,6 +194,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 027580C22BA5532100E7031B /* Build configuration list for PBXNativeTarget "FLO-RXTests" */;
 			buildPhases = (
+				C914AA81A185E9DD086C7EFA /* [CP] Check Pods Manifest.lock */,
 				027580A72BA5532100E7031B /* Sources */,
 				027580A82BA5532100E7031B /* Frameworks */,
 				027580A92BA5532100E7031B /* Resources */,
@@ -169,9 +213,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 027580C52BA5532100E7031B /* Build configuration list for PBXNativeTarget "FLO-RXUITests" */;
 			buildPhases = (
+				16EAD3E6420B82EA233FAE03 /* [CP] Check Pods Manifest.lock */,
 				027580B12BA5532100E7031B /* Sources */,
 				027580B22BA5532100E7031B /* Frameworks */,
 				027580B32BA5532100E7031B /* Resources */,
+				92FEFD1CE3B387FE07E658FF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -252,6 +298,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		16EAD3E6420B82EA233FAE03 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FLO-RX-FLO-RXUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50D512AC46D34B4672F95970 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FLO-RX/Pods-FLO-RX-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FLO-RX/Pods-FLO-RX-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FLO-RX/Pods-FLO-RX-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8ABC8ACA9716ED7C6E10E517 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FLO-RX-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92FEFD1CE3B387FE07E658FF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FLO-RX-FLO-RXUITests/Pods-FLO-RX-FLO-RXUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FLO-RX-FLO-RXUITests/Pods-FLO-RX-FLO-RXUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FLO-RX-FLO-RXUITests/Pods-FLO-RX-FLO-RXUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C914AA81A185E9DD086C7EFA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FLO-RXTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0275808E2BA5532000E7031B /* Sources */ = {
@@ -437,6 +586,7 @@
 		};
 		027580C02BA5532100E7031B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE41BF7D6BD1683650835582 /* Pods-FLO-RX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -466,6 +616,7 @@
 		};
 		027580C12BA5532100E7031B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 417BEBFD74EAC0CCB932CA07 /* Pods-FLO-RX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -495,6 +646,7 @@
 		};
 		027580C32BA5532100E7031B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D555703BDAC11F81AFEF148D /* Pods-FLO-RXTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -515,6 +667,7 @@
 		};
 		027580C42BA5532100E7031B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B9FDABA0A3E70A3CD13E052 /* Pods-FLO-RXTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -535,6 +688,7 @@
 		};
 		027580C62BA5532100E7031B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1B2025F3186316F85159D20 /* Pods-FLO-RX-FLO-RXUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -553,6 +707,7 @@
 		};
 		027580C72BA5532100E7031B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4788AC1C7112EF08178362C2 /* Pods-FLO-RX-FLO-RXUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
