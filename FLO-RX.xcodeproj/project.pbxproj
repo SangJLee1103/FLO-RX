@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		027580962BA5532000E7031B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580952BA5532000E7031B /* AppDelegate.swift */; };
 		027580982BA5532000E7031B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580972BA5532000E7031B /* SceneDelegate.swift */; };
-		0275809A2BA5532000E7031B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580992BA5532000E7031B /* ViewController.swift */; };
-		0275809D2BA5532000E7031B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0275809B2BA5532000E7031B /* Main.storyboard */; };
+		0275809A2BA5532000E7031B /* MusicPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580992BA5532000E7031B /* MusicPlayViewController.swift */; };
 		027580A22BA5532100E7031B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 027580A12BA5532100E7031B /* Assets.xcassets */; };
 		027580A52BA5532100E7031B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 027580A32BA5532100E7031B /* LaunchScreen.storyboard */; };
 		027580B02BA5532100E7031B /* FLO_RXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580AF2BA5532100E7031B /* FLO_RXTests.swift */; };
@@ -42,8 +41,7 @@
 		027580922BA5532000E7031B /* FLO-RX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FLO-RX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		027580952BA5532000E7031B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		027580972BA5532000E7031B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		027580992BA5532000E7031B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0275809C2BA5532000E7031B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		027580992BA5532000E7031B /* MusicPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayViewController.swift; sourceTree = "<group>"; };
 		027580A12BA5532100E7031B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		027580A42BA5532100E7031B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		027580A62BA5532100E7031B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,8 +116,7 @@
 			children = (
 				027580952BA5532000E7031B /* AppDelegate.swift */,
 				027580972BA5532000E7031B /* SceneDelegate.swift */,
-				027580992BA5532000E7031B /* ViewController.swift */,
-				0275809B2BA5532000E7031B /* Main.storyboard */,
+				027580992BA5532000E7031B /* MusicPlayViewController.swift */,
 				027580A12BA5532100E7031B /* Assets.xcassets */,
 				027580A32BA5532100E7031B /* LaunchScreen.storyboard */,
 				027580A62BA5532100E7031B /* Info.plist */,
@@ -164,7 +161,6 @@
 				D555703BDAC11F81AFEF148D /* Pods-FLO-RXTests.debug.xcconfig */,
 				7B9FDABA0A3E70A3CD13E052 /* Pods-FLO-RXTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -279,7 +275,6 @@
 			files = (
 				027580A52BA5532100E7031B /* LaunchScreen.storyboard in Resources */,
 				027580A22BA5532100E7031B /* Assets.xcassets in Resources */,
-				0275809D2BA5532000E7031B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,7 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0275809A2BA5532000E7031B /* ViewController.swift in Sources */,
+				0275809A2BA5532000E7031B /* MusicPlayViewController.swift in Sources */,
 				027580962BA5532000E7031B /* AppDelegate.swift in Sources */,
 				027580982BA5532000E7031B /* SceneDelegate.swift in Sources */,
 			);
@@ -446,14 +441,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		0275809B2BA5532000E7031B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0275809C2BA5532000E7031B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		027580A32BA5532100E7031B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -502,7 +489,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -517,7 +504,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -565,7 +552,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -574,7 +561,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -597,7 +584,6 @@
 				INFOPLIST_FILE = "FLO-RX/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -627,7 +613,6 @@
 				INFOPLIST_FILE = "FLO-RX/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
