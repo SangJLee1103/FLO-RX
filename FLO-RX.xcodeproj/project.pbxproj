@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0212CBC32BA56F570098D002 /* MusicRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212CBC22BA56F570098D002 /* MusicRouter.swift */; };
+		0212CBC52BA56FBF0098D002 /* MusicRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212CBC42BA56FBF0098D002 /* MusicRepository.swift */; };
+		0212CBC72BA56FCB0098D002 /* MusicRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212CBC62BA56FCB0098D002 /* MusicRepositoryImpl.swift */; };
+		0212CBCC2BA577EB0098D002 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212CBCB2BA577EB0098D002 /* UIColor+Extension.swift */; };
+		0212CBCF2BA578C70098D002 /* MusicPlayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0212CBCE2BA578C70098D002 /* MusicPlayViewModel.swift */; };
+		026843B52BA5664C005679F8 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026843B42BA5664C005679F8 /* Music.swift */; };
 		027580962BA5532000E7031B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580952BA5532000E7031B /* AppDelegate.swift */; };
 		027580982BA5532000E7031B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580972BA5532000E7031B /* SceneDelegate.swift */; };
 		0275809A2BA5532000E7031B /* MusicPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027580992BA5532000E7031B /* MusicPlayViewController.swift */; };
@@ -38,13 +44,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0212CBC22BA56F570098D002 /* MusicRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicRouter.swift; sourceTree = "<group>"; };
+		0212CBC42BA56FBF0098D002 /* MusicRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicRepository.swift; sourceTree = "<group>"; };
+		0212CBC62BA56FCB0098D002 /* MusicRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicRepositoryImpl.swift; sourceTree = "<group>"; };
+		0212CBCB2BA577EB0098D002 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		0212CBCE2BA578C70098D002 /* MusicPlayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayViewModel.swift; sourceTree = "<group>"; };
+		026843B42BA5664C005679F8 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		027580922BA5532000E7031B /* FLO-RX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FLO-RX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		027580952BA5532000E7031B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		027580972BA5532000E7031B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		027580992BA5532000E7031B /* MusicPlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayViewController.swift; sourceTree = "<group>"; };
 		027580A12BA5532100E7031B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		027580A42BA5532100E7031B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		027580A62BA5532100E7031B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		027580AB2BA5532100E7031B /* FLO-RXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FLO-RXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		027580AF2BA5532100E7031B /* FLO_RXTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLO_RXTests.swift; sourceTree = "<group>"; };
 		027580B52BA5532100E7031B /* FLO-RXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FLO-RXUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +100,103 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0212CBC12BA56F440098D002 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				0212CBC22BA56F570098D002 /* MusicRouter.swift */,
+				0212CBC42BA56FBF0098D002 /* MusicRepository.swift */,
+				0212CBC62BA56FCB0098D002 /* MusicRepositoryImpl.swift */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
+		0212CBC82BA572520098D002 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0212CBCA2BA577C20098D002 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				026843AE2BA5650A005679F8 /* Delegates */,
+				0212CBCD2BA5781E0098D002 /* Extensions */,
+				026843B12BA56524005679F8 /* Models */,
+				026843B62BA566A7005679F8 /* Repositories */,
+				0212CBC82BA572520098D002 /* Network */,
+				026843B22BA5652B005679F8 /* ViewModels */,
+				026843B02BA5651E005679F8 /* Views */,
+				026843AF2BA56514005679F8 /* ViewControllers */,
+				027580A32BA5532100E7031B /* LaunchScreen.storyboard */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		0212CBCD2BA5781E0098D002 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0212CBCB2BA577EB0098D002 /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		026843AE2BA5650A005679F8 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				027580952BA5532000E7031B /* AppDelegate.swift */,
+				027580972BA5532000E7031B /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		026843AF2BA56514005679F8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				027580992BA5532000E7031B /* MusicPlayViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		026843B02BA5651E005679F8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		026843B12BA56524005679F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				026843B42BA5664C005679F8 /* Music.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		026843B22BA5652B005679F8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0212CBCE2BA578C70098D002 /* MusicPlayViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		026843B32BA56552005679F8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				027580A12BA5532100E7031B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		026843B62BA566A7005679F8 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				0212CBC12BA56F440098D002 /* Music */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		027580892BA5532000E7031B = {
 			isa = PBXGroup;
 			children = (
@@ -114,12 +222,8 @@
 		027580942BA5532000E7031B /* FLO-RX */ = {
 			isa = PBXGroup;
 			children = (
-				027580952BA5532000E7031B /* AppDelegate.swift */,
-				027580972BA5532000E7031B /* SceneDelegate.swift */,
-				027580992BA5532000E7031B /* MusicPlayViewController.swift */,
-				027580A12BA5532100E7031B /* Assets.xcassets */,
-				027580A32BA5532100E7031B /* LaunchScreen.storyboard */,
-				027580A62BA5532100E7031B /* Info.plist */,
+				026843B32BA56552005679F8 /* Resources */,
+				0212CBCA2BA577C20098D002 /* Sources */,
 			);
 			path = "FLO-RX";
 			sourceTree = "<group>";
@@ -403,8 +507,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0275809A2BA5532000E7031B /* MusicPlayViewController.swift in Sources */,
+				0212CBC52BA56FBF0098D002 /* MusicRepository.swift in Sources */,
+				0212CBCF2BA578C70098D002 /* MusicPlayViewModel.swift in Sources */,
 				027580962BA5532000E7031B /* AppDelegate.swift in Sources */,
+				0212CBC72BA56FCB0098D002 /* MusicRepositoryImpl.swift in Sources */,
 				027580982BA5532000E7031B /* SceneDelegate.swift in Sources */,
+				026843B52BA5664C005679F8 /* Music.swift in Sources */,
+				0212CBC32BA56F570098D002 /* MusicRouter.swift in Sources */,
+				0212CBCC2BA577EB0098D002 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
