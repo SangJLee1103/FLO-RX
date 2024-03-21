@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.window?.rootViewController = MusicPlayViewController()
+            self.window?.rootViewController = MusicPlayViewController(viewModel: MusicPlayViewModel())
         }
     }
 
