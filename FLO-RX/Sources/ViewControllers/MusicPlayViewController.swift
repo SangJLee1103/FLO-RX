@@ -13,7 +13,7 @@ import Then
 
 final class MusicPlayViewController: UIViewController {
     
-    private let viewModel: MusicPlayViewModel
+    private let viewModel: MusicViewModel
     
     private lazy var indicator = UIActivityIndicatorView().then {
         $0.center = self.splitViewController?.view.center ?? CGPoint()
@@ -78,7 +78,7 @@ final class MusicPlayViewController: UIViewController {
         bind()
     }
     
-    init(viewModel: MusicPlayViewModel) {
+    init(viewModel: MusicViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

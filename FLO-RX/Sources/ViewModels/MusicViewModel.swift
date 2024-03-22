@@ -12,7 +12,7 @@ import RxAVFoundation
 import NSObject_Rx
 import SDWebImage
 
-final class MusicPlayViewModel: HasDisposeBag {
+final class MusicViewModel: HasDisposeBag {
     
     var player = AVPlayer()
     var isPlay = BehaviorRelay(value: false)
