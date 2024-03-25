@@ -27,6 +27,17 @@ final class MusicViewModel: HasDisposeBag {
     var duration: Observable<String> { musicObservable.map { self.formattedTime(time: Double($0?.duration ?? 0)) } }
     var durationTimeObservable: Observable<Float> { musicObservable.map { Float($0?.duration ?? 0) } }
     
+    
+    // About Lyrics
+    private let lyricsDictRelay = BehaviorRelay<[Int: String]>(value: [:])
+    private let lyricsArrayRelay = BehaviorRelay<[String]>(value: [])
+    private let prevLyricsIndexRelay = BehaviorRelay<Int?>(value: nil)
+    
+    var lyricsDictObservable: Observable<[Int: String]> { lyricsDictRelay.asObservable() }
+    var lyricsArrayObservable: Observable<[String]> { lyricsArrayRelay.asObservable() }
+    var prevLyricsIndexObservable: Observable<Int?> { prevLyricsIndexRelay.asObservable() }
+    
+    
     var currentTime: Observable<String> {
         return Observable.create { observer in
             let interval = CMTime(seconds: 1, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
@@ -73,6 +84,7 @@ final class MusicViewModel: HasDisposeBag {
             .subscribe(onNext: { [weak self] music in
                 self?.music.accept(music)
                 self?.prepareAndPlayMusic(url: music.fileUrl)
+                self?.classifyAndSetLyrics(music.lyrics)
             }, onError: { error in
                 print(error.localizedDescription)
             }).disposed(by: disposeBag)
@@ -99,6 +111,23 @@ final class MusicViewModel: HasDisposeBag {
                 self?.togglePlayPause()
             })
             .disposed(by: disposeBag)
+    }
+    
+    // 가사 가공
+    private func classifyAndSetLyrics(_ lyrics: String) {
+        let lyricsArr = lyrics.split(separator: "\n").map { String($0) }
+        var dict = [Int: String]()
+        for line in lyricsArr {
+            guard let timePart = line.split(separator: "]").first?.trimmingCharacters(in: CharacterSet(charactersIn: "[]")),
+                  let time = timeStringToSeconds(timePart) else { continue }
+            let textPart = String(line.split(separator: "]").dropFirst().joined(separator: "]"))
+            dict[Int(time)] = textPart
+        }
+        let sortedLyricsArray = dict.sorted { $0.key < $1.key }.map { $0.value }
+        
+        lyricsDictRelay.accept(dict)
+        lyricsArrayRelay.accept(sortedLyricsArray)
+        prevLyricsIndexRelay.accept(nil) // 초기 상태 설정
     }
     
     // 원하는 지점을 찾고 이동하는 함수
@@ -153,7 +182,7 @@ final class MusicViewModel: HasDisposeBag {
               let minutes = Float(components[0]),
               let seconds = Float(components[1]),
               let milliseconds = Float(components[2]) else { return nil }
-
+        
         return minutes * 60 + seconds + milliseconds / 1000.0
     }
 }

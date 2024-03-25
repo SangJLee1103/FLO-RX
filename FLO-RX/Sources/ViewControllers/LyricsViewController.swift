@@ -16,8 +16,6 @@ final class LyricsViewController: UIViewController {
     private let viewModel: MusicViewModel
     
     private lazy var tableView = UITableView().then {
-//        $0.dataSource = self
-//        $0.delegate = self
         $0.backgroundColor = .white
         $0.rowHeight = 30
         $0.separatorStyle = .none
@@ -110,7 +108,7 @@ final class LyricsViewController: UIViewController {
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalTo(closeButton.snp.leading).offset(20)
         }
-
+        
         tableView.snp.makeConstraints {
             $0.top.equalTo(topView.snp.bottom)
             $0.leading.equalTo(safeArea)
@@ -170,16 +168,11 @@ final class LyricsViewController: UIViewController {
             .subscribe(onNext: { [weak self] newValue in
                 self?.viewModel.seek(to: newValue)
             }).disposed(by: rx.disposeBag)
+        
+        viewModel.lyricsArrayObservable
+            .bind(to: tableView.rx.items(cellIdentifier: LyricsTableViewCell.identifier, cellType: LyricsTableViewCell.self)) { (row, lyrics, cell) in
+                cell.setLyrics(text: lyrics)
+            }
+            .disposed(by: rx.disposeBag)
     }
 }
-
-// MARK: - About TableView Delegate, DataSource
-//extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        
-//    }
-//}
