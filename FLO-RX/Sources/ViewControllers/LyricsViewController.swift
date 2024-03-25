@@ -11,15 +11,17 @@ import Then
 import RxSwift
 import RxCocoa
 
-
 final class LyricsViewController: UIViewController {
     
     private let viewModel: MusicViewModel
     
     private lazy var tableView = UITableView().then {
-        $0.dataSource = self
-        $0.delegate = self
+//        $0.dataSource = self
+//        $0.delegate = self
         $0.backgroundColor = .white
+        $0.rowHeight = 30
+        $0.separatorStyle = .none
+        $0.register(LyricsTableViewCell.self, forCellReuseIdentifier: LyricsTableViewCell.identifier)
     }
     
     private let topView = UIView().then {
@@ -57,6 +59,7 @@ final class LyricsViewController: UIViewController {
     
     init(viewModel: MusicViewModel) {
         self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -103,7 +106,7 @@ final class LyricsViewController: UIViewController {
         authorLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(5)
             $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalTo(closeButton.snp.bottom).offset(20)
+            $0.trailing.equalTo(closeButton.snp.leading).offset(20)
         }
 
         tableView.snp.makeConstraints {
@@ -121,7 +124,6 @@ final class LyricsViewController: UIViewController {
             $0.centerX.equalTo(safeArea)
             $0.top.equalTo(progressSlider.snp.bottom).offset(30)
         }
-        
     }
     
     private func bind() {
@@ -130,12 +132,12 @@ final class LyricsViewController: UIViewController {
 }
 
 
-extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-    }
-}
+//extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        
+//    }
+//}
