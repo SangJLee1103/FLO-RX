@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 import SnapKit
 import Then
 
@@ -125,6 +126,17 @@ final class MusicPlayViewController: UIViewController {
             $0.centerX.equalTo(safeArea)
         }
         
+        lyricsLabel.rx.tapGesture()
+            .when(.recognized)
+            .asDriver { _ in .never() }
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let lyricsVC = LyricsViewController(viewModel: viewModel)
+                lyricsVC.modalPresentationStyle = .fullScreen
+                present(lyricsVC, animated: true)
+            })
+            .disposed(by: rx.disposeBag)
+        
         progressSlider.snp.makeConstraints {
             $0.top.equalTo(lyricsLabel.snp.bottom).offset(50)
             $0.leading.trailing.equalTo(safeArea).inset(30)
@@ -188,7 +200,6 @@ final class MusicPlayViewController: UIViewController {
             .map { $0 ? UIImage(systemName: "pause.fill") : UIImage(systemName: "play.fill") }
             .bind(to: playButton.rx.image(for: .normal))
             .disposed(by: rx.disposeBag)
-        
         
         // MARK: - About UISlider
         viewModel.durationTimeObservable
