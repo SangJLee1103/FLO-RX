@@ -14,19 +14,15 @@ import SDWebImage
 
 final class MusicViewModel: HasDisposeBag {
     
-    var player = AVPlayer()
-    var isPlay = BehaviorRelay(value: false)
-    
+    private let player = AVPlayer()
     private let music = BehaviorRelay<Music?>(value: nil)
     
-    var musicObservable: Observable<Music?> {
-        return music.asObservable()
-    }
-    
+    var musicObservable: Observable<Music?> { return music.asObservable() }
     var title: Observable<String> { musicObservable.map { $0?.title ?? "" } }
     var singer: Observable<String> { musicObservable.map { $0?.singer ?? "" } }
     var album: Observable<String> { musicObservable.map { $0?.album ?? "" } }
     var image: Observable<String> { musicObservable.map { $0?.imageUrl ?? "" } }
+    var isPlay = BehaviorRelay(value: false)
     
     var duration: Observable<String> { musicObservable.map { self.formattedTime(time: Double($0?.duration ?? 0)) } }
     var durationTimeObservable: Observable<Float> { musicObservable.map { Float($0?.duration ?? 0) } }
@@ -119,7 +115,6 @@ final class MusicViewModel: HasDisposeBag {
         }
         isPlay.accept(!isPlay.value)
     }
-    
     
     // 가사 파싱 및 NSAttributed
     private func styledCurrentLyrics(_ currentTime: Float, lyrics: String) -> NSAttributedString {

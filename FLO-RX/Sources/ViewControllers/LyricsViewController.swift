@@ -33,12 +33,12 @@ final class LyricsViewController: UIViewController {
         $0.numberOfLines = 1
     }
     
-    private let authorLabel = UILabel().then {
+    private let singerLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 12)
     }
     
     private let closeButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "xMark"), for: .normal)
+        $0.setImage(UIImage(systemName: "xmark"), for: .normal)
         $0.tintColor = .black
     }
     
@@ -55,6 +55,7 @@ final class LyricsViewController: UIViewController {
     private let toggleButton = UIButton().then {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25)
         $0.setImage(UIImage(systemName: "scope", withConfiguration: imageConfig), for: .normal)
+        $0.tintColor = .black
     }
     
     init(viewModel: MusicViewModel) {
@@ -72,6 +73,7 @@ final class LyricsViewController: UIViewController {
         bind()
     }
     
+    // MARK: - About UI
     private func configureUI() {
         view.backgroundColor = .white
         
@@ -90,20 +92,20 @@ final class LyricsViewController: UIViewController {
         
         topView.addSubview(closeButton)
         closeButton.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalToSuperview().offset(10)
             $0.trailing.equalToSuperview().inset(20)
+            $0.width.height.equalTo(24)
         }
-        
         
         topView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(10)
             $0.leading.equalToSuperview().offset(20)
-            $0.trailing.equalTo(closeButton.snp.leading).offset(20)
+            $0.trailing.equalTo(closeButton.snp.leading).offset(-20)
         }
         
-        topView.addSubview(authorLabel)
-        authorLabel.snp.makeConstraints {
+        topView.addSubview(singerLabel)
+        singerLabel.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(5)
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalTo(closeButton.snp.leading).offset(20)
@@ -111,8 +113,15 @@ final class LyricsViewController: UIViewController {
 
         tableView.snp.makeConstraints {
             $0.top.equalTo(topView.snp.bottom)
-            $0.leading.trailing.equalTo(safeArea)
+            $0.leading.equalTo(safeArea)
+            $0.trailing.equalTo(safeArea).inset(50)
             $0.bottom.equalTo(safeArea).inset(60)
+        }
+        
+        toggleButton.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom).offset(40)
+            $0.trailing.equalTo(safeArea).inset(15)
+            $0.width.height.equalTo(30)
         }
         
         progressSlider.snp.makeConstraints {
@@ -126,12 +135,45 @@ final class LyricsViewController: UIViewController {
         }
     }
     
+    // MARK: - About Bind
     private func bind() {
+        closeButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.dismiss(animated: true)
+            })
+            .disposed(by: rx.disposeBag)
         
+        viewModel.title
+            .bind(to: titleLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.singer
+            .bind(to: singerLabel.rx.text)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.isPlay
+            .map { $0 ? UIImage(systemName: "pause.fill") : UIImage(systemName: "play.fill") }
+            .bind(to: playButton.rx.image(for: .normal))
+            .disposed(by: rx.disposeBag)
+        
+        // MARK: - About UISlider
+        viewModel.durationTimeObservable
+            .bind(to: progressSlider.rx.maximumValue)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.currentTimeToFloat
+            .bind(to: progressSlider.rx.value)
+            .disposed(by: rx.disposeBag)
+        
+        progressSlider.rx.value.changed
+            .subscribe(onNext: { [weak self] newValue in
+                self?.viewModel.seek(to: newValue)
+            }).disposed(by: rx.disposeBag)
     }
 }
 
-
+// MARK: - About TableView Delegate, DataSource
 //extension LyricsViewController: UITableViewDelegate, UITableViewDataSource {
 //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //

@@ -39,6 +39,10 @@ final class LyricsTableViewCell: UITableViewCell {
         resetCurrentLyricsUI()
     }
     
+    public func setLyrics(text: String) {
+        lyricsLabel.text = text
+    }
+    
     private func setCurrentLyricsIndex() {
         lyricsLabel.textColor = .black
         lyricsLabel.font = UIFont.boldSystemFont(ofSize: 13)
