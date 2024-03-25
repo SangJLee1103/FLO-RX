@@ -28,9 +28,8 @@ final class MusicViewModel: HasDisposeBag {
     var album: Observable<String> { musicObservable.map { $0?.album ?? "" } }
     var image: Observable<String> { musicObservable.map { $0?.imageUrl ?? "" } }
     
-    var duration: Observable<String> { musicObservable.map { self.formatTime(time: Double($0?.duration ?? 0)) } }
+    var duration: Observable<String> { musicObservable.map { self.formattedTime(time: Double($0?.duration ?? 0)) } }
     var durationTimeObservable: Observable<Float> { musicObservable.map { Float($0?.duration ?? 0) } }
-    
     
     var currentTime: Observable<String> {
         return Observable.create { observer in
@@ -38,7 +37,7 @@ final class MusicViewModel: HasDisposeBag {
             let mainQueue = DispatchQueue.main
             _ = self.player.addPeriodicTimeObserver(forInterval: interval, queue: mainQueue) { [weak self] time in
                 let currentTime = self?.player.currentTime().seconds ?? 0
-                let timeString = self?.formatTime(time: currentTime) ?? "00:00"
+                let timeString = self?.formattedTime(time: currentTime) ?? "00:00"
                 observer.onNext(timeString)
             }
             return Disposables.create()
@@ -83,31 +82,11 @@ final class MusicViewModel: HasDisposeBag {
             }).disposed(by: disposeBag)
     }
     
-    private func convertMusicData(url: String) {
-        if let url = URL(string: url) {
-            let playerItem = AVPlayerItem(url: url)
-            player.replaceCurrentItem(with: playerItem)
-        }
-    }
-    
-    private func formatTime(time: TimeInterval) -> String {
+    // 분:초 치환
+    private func formattedTime(time: TimeInterval) -> String {
         let minutes = Int(time) / 60
         let seconds = Int(time) % 60
         return String(format: "%02d:%02d", minutes, seconds)
-    }
-    
-    // 분:초 치환
-    private func getTime(time: Double) -> Observable<String> {
-        return Observable.create { observer in
-            let minute = Int(time / 60)
-            let second = Int(time.truncatingRemainder(dividingBy: 60))
-            let timeString = String(format: "%02ld:%02ld", minute, second)
-            
-            observer.onNext(timeString)
-            observer.onCompleted()
-            
-            return Disposables.create()
-        }
     }
     
     // 음원 URL을 통해 음원 데이터로 converting
@@ -140,6 +119,7 @@ final class MusicViewModel: HasDisposeBag {
         }
         isPlay.accept(!isPlay.value)
     }
+    
     
     // 가사 파싱 및 NSAttributed
     private func styledCurrentLyrics(_ currentTime: Float, lyrics: String) -> NSAttributedString {
