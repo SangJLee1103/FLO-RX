@@ -22,12 +22,12 @@ final class MusicPlayViewController: UIViewController {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .boldSystemFont(ofSize: 17)
+        $0.font = .boldSystemFont(ofSize: 19)
         $0.textColor = .black
     }
     
     private let albumLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 13)
+        $0.font = .systemFont(ofSize: 14)
         $0.textColor = .darkGray
     }
     
