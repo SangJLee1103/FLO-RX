@@ -12,25 +12,27 @@ import RxAVFoundation
 import NSObject_Rx
 import SDWebImage
 
-final class MusicPlayViewModel: HasDisposeBag {
+final class MusicViewModel: HasDisposeBag {
     
-    var player = AVPlayer()
-    var isPlay = BehaviorRelay(value: false)
-    
+    private let player = AVPlayer()
     private let music = BehaviorRelay<Music?>(value: nil)
     
-    var musicObservable: Observable<Music?> {
-        return music.asObservable()
-    }
-    
+    var musicObservable: Observable<Music?> { return music.asObservable() }
     var title: Observable<String> { musicObservable.map { $0?.title ?? "" } }
     var singer: Observable<String> { musicObservable.map { $0?.singer ?? "" } }
     var album: Observable<String> { musicObservable.map { $0?.album ?? "" } }
     var image: Observable<String> { musicObservable.map { $0?.imageUrl ?? "" } }
-    
-    var duration: Observable<String> { musicObservable.map { self.formatTime(time: Double($0?.duration ?? 0)) } }
+    var isPlay = BehaviorRelay(value: false)
+    var duration: Observable<String> { musicObservable.map { self.formattedTime(time: Double($0?.duration ?? 0)) } }
     var durationTimeObservable: Observable<Float> { musicObservable.map { Float($0?.duration ?? 0) } }
     
+    var isToggle = BehaviorRelay(value: false)
+    
+    // About Lyrics
+    var lyricsDict = [Int: String]()
+    private var lyricsArray = [String]()
+    private let lyricsArrayRelay = BehaviorRelay<[String]>(value: [])
+    var lyricsArrayObservable: Observable<[String]> { lyricsArrayRelay.asObservable() }
     
     var currentTime: Observable<String> {
         return Observable.create { observer in
@@ -38,7 +40,7 @@ final class MusicPlayViewModel: HasDisposeBag {
             let mainQueue = DispatchQueue.main
             _ = self.player.addPeriodicTimeObserver(forInterval: interval, queue: mainQueue) { [weak self] time in
                 let currentTime = self?.player.currentTime().seconds ?? 0
-                let timeString = self?.formatTime(time: currentTime) ?? "00:00"
+                let timeString = self?.formattedTime(time: currentTime) ?? "00:00"
                 observer.onNext(timeString)
             }
             return Disposables.create()
@@ -78,36 +80,17 @@ final class MusicPlayViewModel: HasDisposeBag {
             .subscribe(onNext: { [weak self] music in
                 self?.music.accept(music)
                 self?.prepareAndPlayMusic(url: music.fileUrl)
+                self?.classifyAndSetLyrics(music.lyrics)
             }, onError: { error in
                 print(error.localizedDescription)
             }).disposed(by: disposeBag)
     }
     
-    private func convertMusicData(url: String) {
-        if let url = URL(string: url) {
-            let playerItem = AVPlayerItem(url: url)
-            player.replaceCurrentItem(with: playerItem)
-        }
-    }
-    
-    private func formatTime(time: TimeInterval) -> String {
+    // 분:초 치환
+    private func formattedTime(time: TimeInterval) -> String {
         let minutes = Int(time) / 60
         let seconds = Int(time) % 60
         return String(format: "%02d:%02d", minutes, seconds)
-    }
-    
-    // 분:초 치환
-    private func getTime(time: Double) -> Observable<String> {
-        return Observable.create { observer in
-            let minute = Int(time / 60)
-            let second = Int(time.truncatingRemainder(dividingBy: 60))
-            let timeString = String(format: "%02ld:%02ld", minute, second)
-            
-            observer.onNext(timeString)
-            observer.onCompleted()
-            
-            return Disposables.create()
-        }
     }
     
     // 음원 URL을 통해 음원 데이터로 converting
@@ -126,6 +109,73 @@ final class MusicPlayViewModel: HasDisposeBag {
             .disposed(by: disposeBag)
     }
     
+    private func classifyAndSetLyrics(_ lyrics: String) {
+        lyrics.split(separator: "\n").forEach { line in
+            let components = line.split(separator: "]", maxSplits: 1, omittingEmptySubsequences: false)
+            guard components.count > 1,
+                  let timeComponent = components.first,
+                  let lyricText = components.last else { return }
+            
+            let timeString = timeComponent.trimmingCharacters(in: CharacterSet(charactersIn: "[]"))
+            if let time = timeStringToSeconds(timeString) {
+                lyricsDict[Int(time)] = String(lyricText).trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+        lyricsArray = lyricsDict.sorted { $0.key < $1.key }.map { $0.value }
+        lyricsArrayRelay.accept(lyricsArray)
+    }
+    
+    private func styledCurrentLyrics(_ currentTime: Float, lyrics: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString()
+        let index = getCurrentLyricsIndex(for: currentTime)
+        
+        let firstLyricTime = lyricsDict.keys.sorted().first ?? 0
+        
+        let currentLyric = index >= 0 ? lyricsArray[index] : ""
+        
+        // 간주 중일 때는 하이라이팅을 적용 X
+        if currentTime < Float(firstLyricTime) {
+            attributedString.append(NSAttributedString(string: currentLyric + "\n", attributes: [.foregroundColor: UIColor.lightGray]))
+        } else {
+            // 간주 중이 아닐 때는 현재 가사에 하이라이팅 적용
+            attributedString.append(NSAttributedString(string: currentLyric + "\n", attributes: [.foregroundColor: UIColor.black]))
+        }
+        
+        
+        if index + 1 < lyricsArray.count {
+            let nextLyric = lyricsArray[index + 1]
+            attributedString.append(NSAttributedString(string: nextLyric, attributes: [.foregroundColor: UIColor.lightGray]))
+        }
+        return attributedString
+    }
+    
+    func getCurrentLyricsIndex(for currentTime: Float) -> Int {
+        let sortedTimes = lyricsDict.keys.sorted()
+        var low = 0
+        var high = sortedTimes.count - 1
+        
+        while low <= high {
+            let mid = low + (high - low) / 2
+            let time = Float(sortedTimes[mid])
+            
+            if time == currentTime {
+                return mid
+            } else if time < currentTime {
+                low = mid + 1
+            } else {
+                high = mid - 1
+            }
+        }
+        
+        // 찾고자 하는 시간이 모든 가사의 시간보다 클 때, 마지막 가사의 인덱스를 반환
+        if low >= sortedTimes.count {
+            return sortedTimes.count - 1
+        }
+        
+        // 현재 시간보다 직전의 가사 인덱스를 반환
+        return max(0, low - 1)
+    }
+    
     // 원하는 지점을 찾고 이동하는 함수
     public func seek(to seconds: Float) {
         let seekTime = CMTimeMake(value: Int64(seconds), timescale: 1)
@@ -141,44 +191,13 @@ final class MusicPlayViewModel: HasDisposeBag {
         isPlay.accept(!isPlay.value)
     }
     
-    // 가사 파싱 및 NSAttributed
-    private func styledCurrentLyrics(_ currentTime: Float, lyrics: String) -> NSAttributedString {
-        let lyricLines = lyrics.split(separator: "\n").map { String($0) }
-        let currentAndNextLyric = NSMutableAttributedString()
-        var currentIndex: Int?
-        
-        // 현재 재생 시간에 맞는 가사 인덱스 찾기
-        for (index, line) in lyricLines.enumerated() {
-            guard let timePart = line.split(separator: "]").first?.trimmingCharacters(in: CharacterSet(charactersIn: "[]")),
-                  let time = timeStringToSeconds(timePart),
-                  currentTime >= time else { continue }
-            
-            currentIndex = index
-        }
-        
-        // 현재 및 다음 가사 선택 및 스타일링
-        if let currentIndex = currentIndex, currentIndex < lyricLines.count {
-            let currentLine = lyricLines[currentIndex].split(separator: "]").map { String($0) }.last ?? ""
-            let nextLine = currentIndex + 1 < lyricLines.count ? lyricLines[currentIndex + 1].split(separator: "]").map { String($0) }.last ?? "" : ""
-            
-            let currentAttributedLine = NSAttributedString(string: currentLine + "\n", attributes: [.foregroundColor: UIColor.black])
-            currentAndNextLyric.append(currentAttributedLine)
-            
-            if !nextLine.isEmpty {
-                let nextAttributedLine = NSAttributedString(string: nextLine, attributes: [.foregroundColor: UIColor.lightGray])
-                currentAndNextLyric.append(nextAttributedLine)
-            }
-        }
-        return currentAndNextLyric
-    }
-    
     private func timeStringToSeconds(_ timeString: String) -> Float? {
         let components = timeString.split(separator: ":")
         guard components.count == 3,
               let minutes = Float(components[0]),
               let seconds = Float(components[1]),
               let milliseconds = Float(components[2]) else { return nil }
-
+        
         return minutes * 60 + seconds + milliseconds / 1000.0
     }
 }

@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.window?.rootViewController = MusicPlayViewController(viewModel: MusicPlayViewModel())
+            self.window?.rootViewController = MusicPlayViewController(viewModel: MusicViewModel())
         }
     }
 
@@ -57,4 +57,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
     }
 }
-

@@ -8,12 +8,13 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxGesture
 import SnapKit
 import Then
 
 final class MusicPlayViewController: UIViewController {
     
-    private let viewModel: MusicPlayViewModel
+    private let viewModel: MusicViewModel
     
     private lazy var indicator = UIActivityIndicatorView().then {
         $0.center = self.splitViewController?.view.center ?? CGPoint()
@@ -21,12 +22,12 @@ final class MusicPlayViewController: UIViewController {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .boldSystemFont(ofSize: 17)
+        $0.font = .boldSystemFont(ofSize: 19)
         $0.textColor = .black
     }
     
     private let albumLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 13)
+        $0.font = .systemFont(ofSize: 14)
         $0.textColor = .darkGray
     }
     
@@ -78,7 +79,7 @@ final class MusicPlayViewController: UIViewController {
         bind()
     }
     
-    init(viewModel: MusicPlayViewModel) {
+    init(viewModel: MusicViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -124,6 +125,17 @@ final class MusicPlayViewController: UIViewController {
             $0.top.equalTo(imgView.snp.bottom).offset(10)
             $0.centerX.equalTo(safeArea)
         }
+        
+        lyricsLabel.rx.tapGesture()
+            .when(.recognized)
+            .asDriver { _ in .never() }
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let lyricsVC = LyricsViewController(viewModel: viewModel)
+                lyricsVC.modalPresentationStyle = .fullScreen
+                present(lyricsVC, animated: true)
+            })
+            .disposed(by: rx.disposeBag)
         
         progressSlider.snp.makeConstraints {
             $0.top.equalTo(lyricsLabel.snp.bottom).offset(50)
@@ -188,7 +200,6 @@ final class MusicPlayViewController: UIViewController {
             .map { $0 ? UIImage(systemName: "pause.fill") : UIImage(systemName: "play.fill") }
             .bind(to: playButton.rx.image(for: .normal))
             .disposed(by: rx.disposeBag)
-        
         
         // MARK: - About UISlider
         viewModel.durationTimeObservable
