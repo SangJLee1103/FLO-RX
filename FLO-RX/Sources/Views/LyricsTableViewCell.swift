@@ -15,9 +15,19 @@ final class LyricsTableViewCell: UITableViewCell {
     
     private let lyricsLabel = UILabel().then {
         $0.textAlignment = .left
-        $0.font = .systemFont(ofSize: 13)
+        $0.font = .systemFont(ofSize: 16)
         $0.textColor = .lightGray
         $0.text = ""
+    }
+    
+    var isCurrentLyrics: Bool = false {
+        didSet {
+            if isCurrentLyrics {
+                setCurrentLyricsUI()
+            } else {
+                resetCurrentLyricsUI()
+            }
+        }
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -26,7 +36,8 @@ final class LyricsTableViewCell: UITableViewCell {
         addSubview(lyricsLabel)
         lyricsLabel.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().inset(50)
             $0.bottom.equalToSuperview()
         }
     }
@@ -43,13 +54,13 @@ final class LyricsTableViewCell: UITableViewCell {
         lyricsLabel.text = text
     }
     
-    private func setCurrentLyricsIndex() {
+    public func setCurrentLyricsUI() {
         lyricsLabel.textColor = .black
-        lyricsLabel.font = UIFont.boldSystemFont(ofSize: 13)
+        lyricsLabel.font = UIFont.boldSystemFont(ofSize: 16)
     }
     
-    private func resetCurrentLyricsUI() {
+    public func resetCurrentLyricsUI() {
         lyricsLabel.textColor = .lightGray
-        lyricsLabel.font = UIFont.systemFont(ofSize: 13)
+        lyricsLabel.font = UIFont.systemFont(ofSize: 16)
     }
 }

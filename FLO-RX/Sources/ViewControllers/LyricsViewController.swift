@@ -27,12 +27,12 @@ final class LyricsViewController: UIViewController {
     }
     
     private let titleLabel = UILabel().then {
-        $0.font = .boldSystemFont(ofSize: 17)
+        $0.font = .boldSystemFont(ofSize: 19)
         $0.numberOfLines = 1
     }
     
     private let singerLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 12)
+        $0.font = .systemFont(ofSize: 15)
     }
     
     private let closeButton = UIButton().then {
@@ -75,8 +75,7 @@ final class LyricsViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .white
         
-        [topView, tableView, toggleButton,
-         progressSlider, playButton].forEach {
+        [topView, tableView, progressSlider, playButton, toggleButton].forEach {
             view.addSubview($0)
         }
         
@@ -110,16 +109,10 @@ final class LyricsViewController: UIViewController {
         }
         
         tableView.snp.makeConstraints {
-            $0.top.equalTo(topView.snp.bottom)
+            $0.top.equalTo(topView.snp.bottom).offset(20)
             $0.leading.equalTo(safeArea)
-            $0.trailing.equalTo(safeArea).inset(50)
+            $0.trailing.equalTo(safeArea)
             $0.bottom.equalTo(safeArea).inset(60)
-        }
-        
-        toggleButton.snp.makeConstraints {
-            $0.top.equalTo(topView.snp.bottom).offset(40)
-            $0.trailing.equalTo(safeArea).inset(15)
-            $0.width.height.equalTo(30)
         }
         
         progressSlider.snp.makeConstraints {
@@ -130,6 +123,12 @@ final class LyricsViewController: UIViewController {
         playButton.snp.makeConstraints {
             $0.centerX.equalTo(safeArea)
             $0.top.equalTo(progressSlider.snp.bottom).offset(30)
+        }
+        
+        toggleButton.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom).offset(30) // topView 아래에 위치하도록 설정
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(20) // 오른쪽 가장자리에 위치하도록 설정
+            $0.width.height.equalTo(30)
         }
     }
     
@@ -171,8 +170,37 @@ final class LyricsViewController: UIViewController {
         
         viewModel.lyricsArrayObservable
             .bind(to: tableView.rx.items(cellIdentifier: LyricsTableViewCell.identifier, cellType: LyricsTableViewCell.self)) { (row, lyrics, cell) in
+                cell.selectionStyle = .none
                 cell.setLyrics(text: lyrics)
             }
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.currentTimeToFloat
+            .distinctUntilChanged()
+            .map { [weak self] currentTime -> (Int, Bool) in
+                guard let self = self else { return (0, false) }
+                let index = viewModel.getCurrentLyricsIndex(for: currentTime)
+                let firstLyricStartTime = viewModel.lyricsDict.keys.sorted().first ?? 0
+ 
+                // 현재 시간이 첫 번째 가사 시작 시간보다 이전인지 여부를 판별
+                let isPrelude = currentTime < Float(firstLyricStartTime)
+                return (index, isPrelude)
+            }
+            .subscribe(onNext: { [weak self] currentIndex, isPrelude in
+                guard let self = self else { return }
+                
+                // 테이블 뷰를 현재 재생 중인 가사 위치로 스크롤
+                self.tableView.scrollToRow(at: IndexPath(row: currentIndex, section: 0), at: .middle, animated: true)
+                
+                for cell in self.tableView.visibleCells as! [LyricsTableViewCell] {
+                    cell.resetCurrentLyricsUI()
+                }
+                
+                // 간주 중이 아닐 때만 현재 가사 셀 하이라이트
+                if !isPrelude, let currentCell = self.tableView.cellForRow(at: IndexPath(row: currentIndex, section: 0)) as? LyricsTableViewCell {
+                    currentCell.setCurrentLyricsUI()
+                }
+            })
             .disposed(by: rx.disposeBag)
     }
 }
