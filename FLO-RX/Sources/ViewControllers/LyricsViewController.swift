@@ -53,7 +53,7 @@ final class LyricsViewController: UIViewController {
     private let toggleButton = UIButton().then {
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 25)
         $0.setImage(UIImage(systemName: "scope", withConfiguration: imageConfig), for: .normal)
-        $0.tintColor = .black
+        $0.tintColor = .gray
     }
     
     init(viewModel: MusicViewModel) {
@@ -126,8 +126,8 @@ final class LyricsViewController: UIViewController {
         }
         
         toggleButton.snp.makeConstraints {
-            $0.top.equalTo(topView.snp.bottom).offset(30) // topView 아래에 위치하도록 설정
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(20) // 오른쪽 가장자리에 위치하도록 설정
+            $0.top.equalTo(topView.snp.bottom).offset(30)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             $0.width.height.equalTo(30)
         }
     }
@@ -149,6 +149,13 @@ final class LyricsViewController: UIViewController {
             .bind(to: singerLabel.rx.text)
             .disposed(by: rx.disposeBag)
         
+        // MARK: - About Play Button
+        playButton.rx.tap
+            .bind { [weak self] _ in
+                self?.viewModel.togglePlayPause()
+            }
+            .disposed(by: rx.disposeBag)
+        
         viewModel.isPlay
             .map { $0 ? UIImage(systemName: "pause.fill") : UIImage(systemName: "play.fill") }
             .bind(to: playButton.rx.image(for: .normal))
@@ -168,6 +175,7 @@ final class LyricsViewController: UIViewController {
                 self?.viewModel.seek(to: newValue)
             }).disposed(by: rx.disposeBag)
         
+        // 전체 가사 바인딩
         viewModel.lyricsArrayObservable
             .bind(to: tableView.rx.items(cellIdentifier: LyricsTableViewCell.identifier, cellType: LyricsTableViewCell.self)) { (row, lyrics, cell) in
                 cell.selectionStyle = .none
@@ -181,7 +189,7 @@ final class LyricsViewController: UIViewController {
                 guard let self = self else { return (0, false) }
                 let index = viewModel.getCurrentLyricsIndex(for: currentTime)
                 let firstLyricStartTime = viewModel.lyricsDict.keys.sorted().first ?? 0
- 
+                
                 // 현재 시간이 첫 번째 가사 시작 시간보다 이전인지 여부를 판별
                 let isPrelude = currentTime < Float(firstLyricStartTime)
                 return (index, isPrelude)
@@ -202,5 +210,42 @@ final class LyricsViewController: UIViewController {
                 }
             })
             .disposed(by: rx.disposeBag)
+        
+        
+        // MARK: - About toggle Button
+        viewModel.isToggle
+            .map { $0 ? UIColor.black : UIColor.gray }
+            .bind(to: toggleButton.rx.tintColor)
+            .disposed(by: rx.disposeBag)
+        
+        toggleButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                let toggleState = self?.viewModel.isToggle.value ?? false
+                self?.viewModel.isToggle.accept(!toggleState)
+            })
+            .disposed(by: rx.disposeBag)
+        
+        tableView.rx.itemSelected
+            .withLatestFrom(viewModel.isToggle) { (indexPath, isToggled) -> (IndexPath, Bool) in
+                return (indexPath, isToggled)
+            }
+            .filter { $0.1 } // isToggle인 경우만
+            .map { [weak self] (indexPath, _) -> Float? in
+                return self?.findTimeForLyrics(at: indexPath.row)
+            }
+            .compactMap { $0 }
+            .bind { [weak self] time in
+                self?.viewModel.seek(to: time)
+            }
+            .disposed(by: rx.disposeBag)
+    }
+    
+    private func findTimeForLyrics(at index: Int) -> Float? {
+        let sortedTimes = viewModel.lyricsDict.keys.sorted()
+        if index < sortedTimes.count {
+            return Float(sortedTimes[index])
+        }
+        return nil
     }
 }
