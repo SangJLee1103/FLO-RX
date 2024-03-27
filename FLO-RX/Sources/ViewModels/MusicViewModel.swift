@@ -137,7 +137,7 @@ final class MusicViewModel: HasDisposeBag {
         if currentTime < Float(firstLyricTime) {
             attributedString.append(NSAttributedString(string: currentLyric + "\n", attributes: [.foregroundColor: UIColor.lightGray]))
         } else {
-            // 간주 중이 아닐 때는 현재 가사에 하이라이팅 적용
+            // 간주 중이 아닐 때는 현재 가사에 하이라이팅 적용 O
             attributedString.append(NSAttributedString(string: currentLyric + "\n", attributes: [.foregroundColor: UIColor.black]))
         }
         

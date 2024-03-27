@@ -114,13 +114,6 @@
 			path = Music;
 			sourceTree = "<group>";
 		};
-		0212CBC82BA572520098D002 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
 		0212CBCA2BA577C20098D002 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,7 +121,6 @@
 				0212CBCD2BA5781E0098D002 /* Extensions */,
 				026843B12BA56524005679F8 /* Models */,
 				026843B62BA566A7005679F8 /* Repositories */,
-				0212CBC82BA572520098D002 /* Network */,
 				026843B22BA5652B005679F8 /* ViewModels */,
 				026843B02BA5651E005679F8 /* Views */,
 				026843AF2BA56514005679F8 /* ViewControllers */,
