@@ -9,24 +9,23 @@ https://school.programmers.co.kr/skill_check_assignments/2
   <img src="https://github.com/SangJLee1103/FLO-RX/assets/76645463/80ecc955-3f9b-49dd-9682-46fcc5e7a28b" alt="Simulator Screenshot - 2" style="width: 30%;"/>
   <img src="https://github.com/SangJLee1103/FLO-RX/assets/76645463/14f3b925-65f7-4523-bce5-c4a1a5a91d13" alt="Simulator Screenshot - 3" style="width: 30%;"/>
 </div>
-
--> 앱 실행 영상
-![화면 기록 2024-07-01 오후 10 50 31](https://github.com/SangJLee1103/FLO-RX/assets/76645463/2b77ccfc-2451-4b26-bfec-9bb487444823)
-
-
-
+- 스플래쉬 화면
+- 
 - 음악 재생 화면
   - 재생 중인 음악 정보(제목, 가수, 앨범 커버 이미지, 앨범명)
   - 현재 재생 중인 부분의 가사 하이라이팅
   - Seekbar
   - Play/Stop 버튼
 
-
 - 전체 가사 보기 화면
   - 특정 가사로 이동할 수 있는 토글 버튼
   - 전체 가사 화면 닫기 버튼
   - Seekbar
   - Play/Stop 버튼
+ 
+-> 앱 실행 영상
+https://github.com/SangJLee1103/FLO-RX/assets/76645463/8048dbd1-35d8-4bb4-b499-c6d382125411
+
 
 ## 2. 프레임워크
 - UIKit
