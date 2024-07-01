@@ -9,7 +9,6 @@ https://school.programmers.co.kr/skill_check_assignments/2
   <img src="https://github.com/SangJLee1103/FLO-RX/assets/76645463/80ecc955-3f9b-49dd-9682-46fcc5e7a28b" alt="Simulator Screenshot - 2" style="width: 30%;"/>
   <img src="https://github.com/SangJLee1103/FLO-RX/assets/76645463/14f3b925-65f7-4523-bce5-c4a1a5a91d13" alt="Simulator Screenshot - 3" style="width: 30%;"/>
 </div>
-<br>
 
 - 스플래쉬 화면
 
