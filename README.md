@@ -2,16 +2,15 @@
 > 프로그래머스의 과제테스트로 음악 서비스인 FLO App을 클론합니다.<br>
 https://school.programmers.co.kr/skill_check_assignments/2
 
-https://user-images.githubusercontent.com/76645463/204234992-7e65e83b-e556-4f89-94fb-a57d1f347545.mov
+-> 앱 실행 영상
+https://github.com/SangJLee1103/FLO-RX/assets/76645463/39017bde-a872-4da3-98a7-b7c4e1fc8f48.mov
 
 ## 1. 화면구성
-![Simulator Screenshot - iPhone 15 Pro - 2024-07-01 at 22 47 20](https://github.com/SangJLee1103/FLO-RX/assets/76645463/23195f3a-8b67-48fb-ad63-e2e6d8fb0504)
-![Simulator Screenshot - iPhon![Simulator Screenshot - iPhone 15 Pro - 2024-07-01 at 22 47 44](https://github.com/SangJLee1103/FLO-RX/assets/76645463/14f3b925-65f7-4523-bce5-c4a1a5a91d13)
-e 15 Pro - 2024-07-01 at 22 47 30](https://github.com/SangJLee1103/FLO-RX/assets/76645463/80ecc955-3f9b-49dd-9682-46fcc5e7a28b)
-
--> 앱 실행 영상
-https://github.com/SangJLee1103/FLO-RX/assets/76645463/39017bde-a872-4da3-98a7-b7c4e1fc8f48
-
+<div style="display: flex; justify-content: space-between;">
+  <img src="https://github.com/SangJLee1103/FLO-RX/assets/76645463/23195f3a-8b67-48fb-ad63-e2e6d8fb0504" alt="Simulator Screenshot - 1" style="width: 30%;"/>
+  <img src="https://github.com/SangJLee1103/FLO-RX/assets/76645463/80ecc955-3f9b-49dd-9682-46fcc5e7a28b" alt="Simulator Screenshot - 2" style="width: 30%;"/>
+  <img src="https://github.com/SangJLee1103/FLO-RX/assets/76645463/14f3b925-65f7-4523-bce5-c4a1a5a91d13" alt="Simulator Screenshot - 3" style="width: 30%;"/>
+</div>
 
 
 - 음악 재생 화면
