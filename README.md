@@ -2,8 +2,6 @@
 > 프로그래머스의 과제테스트로 음악 서비스인 FLO App을 클론합니다.<br>
 https://school.programmers.co.kr/skill_check_assignments/2
 
--> 앱 실행 영상
-https://github.com/SangJLee1103/FLO-RX/assets/76645463/39017bde-a872-4da3-98a7-b7c4e1fc8f48.mov
 
 ## 1. 화면구성
 <div style="display: flex; justify-content: space-between;">
@@ -11,6 +9,10 @@ https://github.com/SangJLee1103/FLO-RX/assets/76645463/39017bde-a872-4da3-98a7-b
   <img src="https://github.com/SangJLee1103/FLO-RX/assets/76645463/80ecc955-3f9b-49dd-9682-46fcc5e7a28b" alt="Simulator Screenshot - 2" style="width: 30%;"/>
   <img src="https://github.com/SangJLee1103/FLO-RX/assets/76645463/14f3b925-65f7-4523-bce5-c4a1a5a91d13" alt="Simulator Screenshot - 3" style="width: 30%;"/>
 </div>
+
+-> 앱 실행 영상
+![화면 기록 2024-07-01 오후 10 50 31](https://github.com/SangJLee1103/FLO-RX/assets/76645463/2b77ccfc-2451-4b26-bfec-9bb487444823)
+
 
 
 - 음악 재생 화면
@@ -52,10 +54,10 @@ https://github.com/SangJLee1103/FLO-RX/assets/76645463/39017bde-a872-4da3-98a7-b
      ├── Models
      │     └── Music
      ├── Repositories
-     │     ├── Music
-     │     │    ├── MusicRouter
-     │     │    ├── MusicRepository
-     │     │    └── MusicRepositoryImpl             
+     │     └── Music
+     │          ├── MusicRouter
+     │          ├── MusicRepository
+     │          └── MusicRepositoryImpl             
      ├── ViewModels
      │     └── MusicViewModel
      ├── Views
