@@ -25,7 +25,7 @@ https://school.programmers.co.kr/skill_check_assignments/2
   - Play/Stop 버튼
  
 -> 앱 실행 영상
-https://github.com/SangJLee1103/FLO-RX/assets/76645463/8048dbd1-35d8-4bb4-b499-c6d382125411
+https://github.com/SangJLee1103/FLO-RX/assets/76645463/2ed8b2ba-9c57-4d74-9b5d-6cb4896020d7
 
 
 ## 2. 프레임워크
